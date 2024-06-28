@@ -1,4 +1,4 @@
-enum WorklogDay {
+export enum WorklogDay {
     Monday = 'Mon',
     Tuesday = 'Tue',
     Wednesday = 'Wed',

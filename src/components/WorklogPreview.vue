@@ -1,24 +1,32 @@
 <template>
     <div class="markdown-preview">
-        <!-- <div v-for="(line, index) in lines" :key="index" class="markdown-line">
-            <span class="line-number">{{ index + 1 }}</span>
-            <span class="line-content text-left">{{ line }}</span>
-        </div> -->
+        <!-- Date -->
         <div class="markdown-line">
             <span class="line-number">1</span>
-            <span class="line-content text-left">{{ getWorklog().date }}</span>
+            <span class="line-content text-left">### {{ getFormattedDate() }}</span>
+        </div>
+        <!-- Empty line -->
+        <div class="markdown-line">
+            <span class="line-number">2</span>
+            <span class="line-content text-left"></span>
+        </div>
+        <!-- Tasks organization -->
+        <div v-for="(task, index) in worklog.tasks" :key="index" class="markdown-line">
+            <span class="line-number">{{ index + 3 }}</span>
+            
+            <span class="line-content text-left">{{ task.description }}</span>
         </div>
         <button @click="copyCode">Copy</button>
     </div>
 </template>
 
-<script>
-import Worklog from '../types/worklog/Worklog.ts';
+<script lang="ts">
+import { Worklog } from '../types/worklog/Worklog';
 
 export default {
     props: {
         worklog: {
-            type: Worklog,
+            type: Object as () => Worklog,
             required: true
         }
     },
@@ -40,8 +48,8 @@ export default {
                 alert('Failed to copy code.');
             });
         },
-        getWorklog() {
-            return this.$props.worklog;
+        getFormattedDate() {
+            return `${this.worklog.date.weekDay} ${this.worklog.date.month} ${this.worklog.date.day} ${this.worklog.date.year}`;
         }
     }
 }

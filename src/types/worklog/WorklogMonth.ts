@@ -1,4 +1,4 @@
-enum WorklogMonth {
+export enum WorklogMonth {
     January = 'Jan',
     February = 'Feb',
     March = 'Mar',

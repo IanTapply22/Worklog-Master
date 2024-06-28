@@ -1,4 +1,4 @@
-enum TaskType {
+export enum TaskType {
     setback = '[setback]',
     problem = '[problem]',
     realization = '[realization]',
@@ -9,4 +9,5 @@ enum TaskType {
     learning = '[learning]',
     conflict = '[conflict]',
     resolution = '[resolution]',
+    meeting = '[meeting]'
 }
