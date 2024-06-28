@@ -31,8 +31,29 @@ export default {
             description: 'Description of Task 1'
           },
           {
+            type: TaskType.setback,
+            description: 'Description of Task 1'
+          },
+          {
             description: 'Description of Task 2',
             subdescriptions: [
+              {
+                description: 'Subdescription 1 of Task 2'
+              },
+              {
+                description: 'Subdescription 2 of Task 2'
+              }
+            ]
+          },
+          {
+            description: 'Description of Task 2',
+            subdescriptions: [
+              {
+                description: 'Subdescription 1 of Task 2'
+              },
+              {
+                description: 'Subdescription 1 of Task 2'
+              },
               {
                 description: 'Subdescription 1 of Task 2'
               },
