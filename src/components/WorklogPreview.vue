@@ -33,6 +33,15 @@
                     <pre v-if="sub.type" class="line-content text-left">&#9;- {{ sub.type }}: {{ sub.description }}</pre>
                     <pre v-else class="line-content text-left">&#9;- {{ sub.description }}</pre>
                 </div>
+
+                <div v-for="(subdescription, subIndex) in sub.subdescriptions" :key="`sub-${index}-${subIndex}`">
+                <div class="markdown-line">
+                    <span class="line-number">{{ getLineNumber(index, false, subIndex + 2) }}</span>
+                    <!-- Check for subdescription type -->
+                    <pre v-if="subdescription.type" class="line-content text-left">&#9;&#9;- {{ subdescription.type }}: {{ subdescription.description }}</pre>
+                    <pre v-else class="line-content text-left">&#9;&#9;- {{ subdescription.description }}</pre>
+                </div>
+            </div>
             </div>
         </div>
         <button @click="copyMarkdown">Copy</button>

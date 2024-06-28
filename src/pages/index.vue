@@ -55,12 +55,15 @@ export default {
                 description: 'Subdescription 1 of Task 2'
               },
               {
-                description: 'Subdescription 1 of Task 2'
+                description: 'Subdescription 1 of Task 2',
+                subdescriptions: [
+                  {
+                  type: TaskType.meeting,
+                  description: 'Subdescription 2 of Task 2'
+                  }
+                ]
               },
-              {
-                type: TaskType.meeting,
-                description: 'Subdescription 2 of Task 2'
-              }
+              
             ]
           }
         ]
