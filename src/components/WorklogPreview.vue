@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { Worklog } from '../types/worklog/Worklog';
+import { Worklog } from '@/types/Worklog/Worklog';
 import { dateStore } from '../stores/DateStore';
 
 export default {

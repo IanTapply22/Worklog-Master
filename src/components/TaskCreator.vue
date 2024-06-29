@@ -11,14 +11,18 @@
                     </v-card-title>
                     <v-card-text>
                         <v-row>
-                            <v-col cols="12" md="6">
-                                <v-text-field label="Task Description" outlined v-model="task.description" clearable></v-text-field>
+                            <v-col cols="9" md="9" class="justify-right">
+                                <v-textarea label="Task Description" outlined v-model="task.description" clearable></v-textarea>
                             </v-col>
-                            <v-col cols="12" md="6">
+                            <v-col cols="3" md="3">
                                 <v-select label="Task Type" outlined :items="taskTypes" v-model="task.type"></v-select>
                             </v-col>
                         </v-row>
-                        <v-btn class="d-flex justify-start mb-2" color="blue" @click="addSubdescription(index)">Add Subdescription</v-btn>
+                        <v-row class="mb-2 ml-1">
+                            <v-btn class="d-flex justify-start" color="blue" @click="addSubdescription(index)">Add Subdescription</v-btn>
+                            <v-btn class="d-flex justify-start ml-4" color="red" @click="removeSubdescription(index)">Remove Subdescription</v-btn>
+                        </v-row>
+                        
                         <div v-for="(sub, subIndex) in task.subdescriptions" :key="`sub-${subIndex}`">
                             <v-text-field label="Subdescription" outlined v-model="sub.description"></v-text-field>
                         </div>
@@ -29,23 +33,33 @@
     </v-row>
 </template>
 
-<script>
+<script lang="ts">
 import { TaskType } from '../types/TaskType';
+import { worklogStore } from '../stores/WorklogStore';
 
 export default {
     data() {
         return {
+            worklogStore: worklogStore(),
             tasks: [
                 {
                     description: '',
                     type: null,
                     subdescriptions: [],
                 },
-            ],
+            ] as Task[],
             taskTypes: Object.keys(TaskType).map(key => ({
                 title: key,
             })),
         };
+    },
+    watch: {
+        tasks: {
+            handler() {
+                this.worklogStore.setTasks(this.tasks);
+            },
+            deep: true,
+        },
     },
     methods: {
         addTask() {
@@ -61,8 +75,8 @@ export default {
             });
         },
         shortenDescription(description) {
-            if (description.length > 20) {
-                return `${description.substring(0, 20)}...`;
+            if (description.length > 30) {
+                return `${description.substring(0, 30)}...`;
             }
             return description;
         },

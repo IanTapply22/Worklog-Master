@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { WorklogDay } from '../types/worklog/WorklogDay';
-import { WorklogMonth } from '../types/worklog/WorklogMonth';
+import { WorklogDay } from '@/types/worklog/WorklogDay';
+import { WorklogMonth } from '@/types/worklog/WorklogMonth';
 import { dateStore } from '../stores/DateStore';
 
 interface IndexedWorklogDay {

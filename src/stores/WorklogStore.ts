@@ -1,16 +1,25 @@
 import { defineStore } from 'pinia';
 import { Worklog } from '../types/Worklog/Worklog';
+import { Task } from '../types/Task';
 
-export const dateStore = defineStore('dateStore', {
+export const worklogStore = defineStore('dateStore', {
     state: () => ({ 
-        worklogs: [] as Worklog[],
+        worklog: null as Worklog | null,
+        tasks: [] as Task[]
      }),
     getters: {
-        getWorklogs: (state) => state.worklogs,
+        getWorklog: (state) => state.worklog,
+        getTasks: (state) => state.tasks,
     },
     actions: {
         setWorklogs(worklogs: Worklog[]) {
             this.worklogs = worklogs
+        },
+        setTasks(tasks: any) {
+            this.tasks = tasks
+        },
+        addTask(task: Task) {
+            this.tasks.push(task)
         }
     },
 })
