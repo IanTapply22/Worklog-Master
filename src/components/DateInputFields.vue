@@ -15,6 +15,7 @@
 <script lang="ts">
 import { WorklogDay } from '../types/worklog/WorklogDay';
 import { WorklogMonth } from '../types/worklog/WorklogMonth';
+import { dateStore } from '../stores/DateStore';
 
 interface IndexedWorklogDay {
   [key: string]: any;
@@ -30,6 +31,7 @@ const indexedWorklogMonth: IndexedWorklogMonth = WorklogMonth;
 export default {
     data() {
         return {
+            dateStore: dateStore(),
             currentDate: new Date(),
             // Week day and month items for dropdown
             worklogDays: Object.keys(WorklogDay).map(key => ({
@@ -45,48 +47,19 @@ export default {
             selectedYear: '',
         };
     },
-    props: {
-        weekDay: {
-            type: String,
-            required: true
-        },
-        month: {
-            type: String,
-            required: true
-        },
-        day: {
-            type: Number,
-            required: true
-        },
-        year: {
-            type: Number,
-            required: true
-        }
-    },
+    // Watchers to watch values and to change them in the store
     watch: {
-        selectedWeekDay: {
-            handler: function (newVal) {
-                this.$emit('update:weekDay', this.getWeekDay(newVal));
-            },
-            deep: true
+        selectedWeekDay: function (newVal) {
+            this.changeWeekDay();
         },
-        selectedMonth: {
-            handler: function (newVal) {
-                this.$emit('update:month', this.getMonth(newVal));
-            },
-            deep: true
+        selectedMonth: function (newVal) {
+            this.changeMonth();
         },
-        selectedDay: {
-            handler: function (newVal) {
-                this.$emit('update:day', newVal);
-            },
-            deep: true
+        selectedDay: function (newVal) {
+            this.changeDay();
         },
-        selectedYear: {
-            handler: function (newVal) {
-                this.$emit('update:year', newVal);
-            },
-            deep: true
+        selectedYear: function (newVal) {
+            this.changeYear();
         }
     },
     methods: {
@@ -115,7 +88,20 @@ export default {
         getMonth(month: string) {
             // Get the enum with the name
             return indexedWorklogMonth[month];
-        }
+        },
+
+        changeWeekDay() {
+            this.dateStore.setWeekDay(this.getWeekDay(this.selectedWeekDay));
+        },
+        changeMonth() {
+            this.dateStore.setMonth(this.getMonth(this.selectedMonth));
+        },
+        changeDay() {
+            this.dateStore.setDay(parseInt(this.selectedDay));
+        },
+        changeYear() {
+            this.dateStore.setYear(parseInt(this.selectedYear));
+        },
     },
     mounted() {
         this.selectedWeekDay = this.getCurrentDayOfTheWeek();

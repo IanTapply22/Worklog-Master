@@ -4,7 +4,7 @@
     This is a personal project that anyone can use to easily generate daily logs of work done.</h3>
   <div class="flex-container">
     <WorklogPreview :worklog="worklog" class="mt-10 ml-10 flex-item" />
-    <DateInputFields class="mt-10 ml-10 flex-item" :week-day="weekDay" :month="month" :day="day" :year="year" />
+    <DateInputFields class="mt-10 ml-10 flex-item" />
   </div>
 </template>
 

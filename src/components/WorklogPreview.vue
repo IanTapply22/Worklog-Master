@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Worklog } from '../types/worklog/Worklog';
+import { dateStore } from '../stores/DateStore';
 
 export default {
     props: {
@@ -60,6 +61,7 @@ export default {
     },
     data() {
         return {
+            dateStore: dateStore(),
             lines: []
         };
     },
@@ -82,7 +84,7 @@ export default {
             });
         },
         getFormattedDate() {
-            return `${this.worklog.date.weekDay} ${this.worklog.date.month} ${this.worklog.date.day} ${this.worklog.date.year}`;
+            return `${this.dateStore.getWeekDay} ${this.dateStore.getMonth} ${this.dateStore.getDay} ${this.dateStore.getYear}`;
         },
         getLineNumber(index: number, isFirstLine: boolean, subIndex: number) {
             let lineNumber = 3;
