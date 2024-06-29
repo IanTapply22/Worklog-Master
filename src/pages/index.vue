@@ -1,10 +1,11 @@
 <template>
   <h1 class="text-center">Worklog Master</h1>
-  <h3 class="text-center font-weight-light">An easy-to-use systsem that allows me to easily create worklogs for my work. This is a personal project that anyone can use to easily generate daily logs of work done.</h3>
+  <h3 class="text-center font-weight-light">An easy-to-use systsem that allows me to easily create worklogs for my work.
+    This is a personal project that anyone can use to easily generate daily logs of work done.</h3>
   <div class="flex-container">
     <WorklogPreview :worklog="worklog" class="mt-10 ml-10 flex-item" />
-    <InputFields :worklog="worklog" class="mt-10 ml-10 flex-item" />
-</div>
+    <DateInputFields class="mt-10 ml-10 flex-item" :week-day="weekDay" :month="month" :day="day" :year="year" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,14 +14,22 @@ import WorklogPreview from '../components/WorklogPreview.vue';
 import { WorklogDay } from '../types/worklog/WorklogDay';
 import { WorklogMonth } from '../types/worklog/WorklogMonth';
 import { TaskType } from '../types/TaskType';
+import TaskCreator from '../components/TaskCreator.vue';
+import DateInputFields from '../components/DateInputFields.vue';
 
 export default {
   name: 'App',
   components: {
-    WorklogPreview
+    WorklogPreview,
+    TaskCreator,
+    DateInputFields
   },
   data() {
     return {
+      weekDay: WorklogDay.Monday,
+      month: WorklogMonth.January,
+      day: 1,
+      year: 2022,
       worklog: {
         date: {
           weekDay: WorklogDay.Monday, // Example usage, assuming WorklogDay is an enum or similar
@@ -61,17 +70,23 @@ export default {
                 description: 'Subdescription 1 of Task 2',
                 subdescriptions: [
                   {
-                  type: TaskType.meeting,
-                  description: 'Subdescription 2 of Task 2'
+                    type: TaskType.meeting,
+                    description: 'Subdescription 2 of Task 2'
                   }
                 ]
               },
-              
             ]
           }
         ]
         // Add other properties of Worklog here as needed
-      } as Worklog
+      } as unknown as Worklog,
+      watch: {
+        weekDay: {
+          handler: function (newVal: any) {
+            console.log(newVal)
+          }
+        }
+      }
     };
   }
 }
@@ -89,10 +104,12 @@ export default {
 
 .flex-container {
   display: flex;
-  justify-content: start; /* Adjust this as needed */
+  justify-content: start;
+  /* Adjust this as needed */
 }
 
 .flex-item {
-  margin-right: 10px; /* Adjust spacing between items */
+  margin-right: 10px;
+  /* Adjust spacing between items */
 }
 </style>

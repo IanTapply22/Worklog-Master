@@ -8,10 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CodeBox: typeof import('./src/components/CodeBox.vue')['default']
+    DateInputField: typeof import('./src/components/DateInputField.vue')['default']
+    DateInputFields: typeof import('./src/components/DateInputFields.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     InputFields: typeof import('./src/components/InputFields.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TaskCreator: typeof import('./src/components/TaskCreator.vue')['default']
     WorklogPreview: typeof import('./src/components/WorklogPreview.vue')['default']
   }
 }
