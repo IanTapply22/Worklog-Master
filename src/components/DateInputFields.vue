@@ -1,12 +1,12 @@
 <template>
     <v-row>
         <v-col cols="12">
-            <h2 width="30%" class="text-left pb-2">Date Input</h2>
-            <v-select width="30%" :items="worklogDays" label="Week Day" :placeholder="getCurrentDayOfTheWeek()" v-model="selectedWeekDay"></v-select>
-            <v-select width="30%" :items="worklogMonth" label="Month" :placeholder="getCurrentMonth()" v-model="selectedMonth"></v-select>
-            <v-number-input width="30%" :reverse="false" controlVariant="default" label="Day" :placeholder="getCurrentDayOfTheMonth()" :hideInput="false"
+            <h2 class="text-left pb-2">Date Input</h2>
+            <v-select :items="worklogDays" label="Week Day" :placeholder="getCurrentDayOfTheWeek()" v-model="selectedWeekDay"></v-select>
+            <v-select :items="worklogMonth" label="Month" :placeholder="getCurrentMonth()" v-model="selectedMonth"></v-select>
+            <v-number-input :reverse="false" controlVariant="default" label="Day" :placeholder="getCurrentDayOfTheMonth()" :hideInput="false"
                 :inset="true" :min=0 :max=31 v-model="selectedDay"></v-number-input>
-            <v-number-input width="30%" :reverse="false" controlVariant="default" label="Year" :placeholder="getCurrentYear()" :hideInput="false"
+            <v-number-input :reverse="false" controlVariant="default" label="Year" :placeholder="getCurrentYear()" :hideInput="false"
                 :inset="true" :min=1970 v-model="selectedYear"></v-number-input>
         </v-col>
     </v-row>

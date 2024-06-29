@@ -1,32 +1,23 @@
 <template>
-    <div class="task-creator">
-        <input type="text" v-model="taskDescription" placeholder="Task description" />
-        <select v-model="taskType">
-        <option value="setback">Setback</option>
-        <option value="meeting">Meeting</option>
-        <option value="task">Task</option>
-        </select>
-        <button @click="addTask">Add Task</button>
-    </div>
+    <v-row>
+        <v-col cols="12">
+            <h2 class="text-left pb-2">Task Creator</h2>
+            <v-btn class="d-flex justify-start mb-2" color="green" @click="taskCount++">Create Task</v-btn>
+
+            <div v-for="(task, index) in taskCount" :key="index">
+                <v-text-field label="Task Description" ></v-text-field>
+                <v-text-field label="Subtask Description" ></v-text-field>
+            </div>
+        </v-col>
+    </v-row>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            taskDescription: '',
-            taskType: 'setback'
+            taskCount: 1,
         };
     },
-    methods: {
-        addTask() {
-            this.$emit('add-task', {
-                description: this.taskDescription,
-                type: this.taskType
-            });
-            this.taskDescription = '';
-            this.taskType = 'setback';
-        }
-    }
 };
 </script>

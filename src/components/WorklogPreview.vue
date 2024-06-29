@@ -106,7 +106,7 @@ export default {
 
 <style scoped>
 .markdown-preview {
-    width: 30%;
+    width: 40%;
     border: 1px solid #ccc;
     padding: 10px;
     position: relative;

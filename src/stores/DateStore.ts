@@ -16,15 +16,31 @@ export const dateStore = defineStore('dateStore', {
         getYear: (state) => state.year,
     },
     actions: {
+        /**
+         * Set the day of the week
+         * @param weekDay The day of the week
+         */
         setWeekDay(weekDay: string) {
             this.weekDay = weekDay
         },
+        /**
+         * Set the month
+         * @param month The month
+         */
         setMonth(month: string) {
             this.month = month
         },
+        /**
+         * Set the day of the month
+         * @param day The day of the month
+         */
         setDay(day: number) {
             this.day = day
         },
+        /**
+         * Sets the year
+         * @param year The year
+         */
         setYear(year: number) {
             this.year = year
         },

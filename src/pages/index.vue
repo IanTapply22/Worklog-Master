@@ -5,6 +5,7 @@
   <div class="flex-container">
     <WorklogPreview :worklog="worklog" class="mt-10 ml-10 flex-item" />
     <DateInputFields class="mt-10 ml-10 flex-item" />
+    <TaskCreator class="mt-10 ml-10 flex-item" />
   </div>
 </template>
 
@@ -26,10 +27,7 @@ export default {
   },
   data() {
     return {
-      weekDay: WorklogDay.Monday,
-      month: WorklogMonth.January,
-      day: 1,
-      year: 2022,
+      // Example worklog data
       worklog: {
         date: {
           weekDay: WorklogDay.Monday, // Example usage, assuming WorklogDay is an enum or similar
